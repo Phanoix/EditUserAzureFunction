@@ -1,4 +1,5 @@
 # EditUserAzureFunction
+[![Build Status](https://dev.azure.com/gctools/gctools-outilsgc/_apis/build/status/Phanoix.EditUserAzureFunction?branchName=master)](https://dev.azure.com/gctools/gctools-outilsgc/_build/latest?definitionId=2&branchName=master)
 
 ## Azure function to edit user info 
 
