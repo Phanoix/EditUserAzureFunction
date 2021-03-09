@@ -1,11 +1,12 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
 using System.Text;
-using System.String;
+using System;
 using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Azure.WebJobs.Host;
-using Microsoft.Graph.User;
+using Microsoft.Graph;
+using UpdateUserHttp;
 
 namespace UpdateUserHttp.Tests
 {
