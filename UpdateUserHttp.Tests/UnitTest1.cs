@@ -1,12 +1,21 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Threading.Tasks;
-using System.Text;
-using System;
-using System.Net.Http;
 using System.Web.Http;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Host;
+using System.Configuration;
+using System;
+using System.Text;
+using System.Web;
+using System.IO;
+using System.Web.Script.Serialization;
 using Microsoft.Graph;
-using UpdateUserHttp;
+using System.Net.Http.Headers;
+using System.Collections.Generic;
 
 namespace UpdateUserHttp.Tests
 {
