@@ -20,7 +20,7 @@ namespace UpdateUserHttp
 
   public interface IGraphClientWrapper
   {
-    System.Threading.Tasks.Task<Microsoft.Graph.User> updateUser( String userID, User guestUser );
+    Task<object> updateUser( String userID, User guestUser );
   }
 
     public static class UpdateUser
@@ -123,7 +123,7 @@ namespace UpdateUserHttp
         _graphClient = graphClient;
       }
 
-      public async System.Threading.Tasks.Task<Microsoft.Graph.User> updateUser( String userID, User guestUser )
+      public async Task<object> updateUser( String userID, User guestUser )
       {
         return await _graphClient.Users[userID]
                   .Request()
