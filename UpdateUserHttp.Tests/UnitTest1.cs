@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
 using System.Text;
 using System.Net.Http;
@@ -10,6 +10,23 @@ namespace UpdateUserHttp.Tests
     [TestClass]
     public class UnitTest1 : TestHelpers.FunctionTest
     {
+        private class GraphClientMock : IGraphClientWrapper
+        {
+            private readonly String _result;
+
+            public GraphClientMock( String result )
+            {
+                _result = result;
+            }
+
+            public async Task<object> updateUser( String userID, User guestUser )
+            {
+                mockResult = new Task<object>();
+                mockResult.Result = _result;
+                return mockResult;
+            }
+        }
+
         [TestMethod]
         public async Task Request_With_Query()
         {
@@ -23,6 +40,7 @@ namespace UpdateUserHttp.Tests
             var httpConfig = new HttpConfiguration();
             request.SetConfiguration(httpConfig);
 
+            UpdateUser._graphClientWrapper = new GraphClientMock(null);
             var result = await UpdateUser.Run(req: request, log: log);
             Assert.AreEqual("\"Finished\"", result.Content.ReadAsStringAsync().Result);
         }
