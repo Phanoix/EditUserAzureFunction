@@ -1,44 +1,15 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Web.Http;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.Azure.WebJobs.Host;
-using System.Configuration;
-using System;
 using System.Text;
-using System.Web;
-using System.IO;
-using System.Web.Script.Serialization;
-using Microsoft.Graph;
-using System.Net.Http.Headers;
-using System.Collections.Generic;
+using System.Net.Http;
+using System.Web.Http;
+using Microsoft.Azure.WebJobs.Host;
 
 namespace UpdateUserHttp.Tests
 {
     [TestClass]
     public class UnitTest1 : TestHelpers.FunctionTest
     {
-        private class GraphClientMock : IGraphClientWrapper
-        {
-            private readonly String _result;
-
-            public GraphClientMock( String result )
-            {
-                _result = result;
-            }
-
-            public async Task<object> updateUser( String userID, User guestUser )
-            {
-                mockResult = new Task<object>();
-                mockResult.Result = _result;
-                return mockResult;
-            }
-        }
-
         [TestMethod]
         public async Task Request_With_Query()
         {
