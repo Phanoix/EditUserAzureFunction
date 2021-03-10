@@ -22,6 +22,22 @@ namespace UpdateUserHttp
   {
     Task<object> updateUser( String userID, User guestUser );
   }
+  
+  public class GraphClientMock : IGraphClientWrapper
+  {
+      private readonly String _result;
+
+      public GraphClientMock( String result )
+      {
+          _result = result;
+      }
+
+      public async Task<object> updateUser( String userID, User guestUser )
+      {
+          var mockResult = Task<object>.Run( () => {return _result;} );
+          return await mockResult;
+      }
+  }
 
     public static class UpdateUser
     {
@@ -129,22 +145,6 @@ namespace UpdateUserHttp
                   .Request()
                   .UpdateAsync(guestUser);
       }
-    }
-    
-    public class GraphClientMock : IGraphClientWrapper
-    {
-        private readonly String _result;
-
-        public GraphClientMock( String result )
-        {
-            _result = result;
-        }
-
-        public async Task<object> updateUser( String userID, User guestUser )
-        {
-            var mockResult = Task<object>.Run( () => {return _result;} );
-            return await mockResult;
-        }
     }
 
 
