@@ -130,22 +130,23 @@ namespace UpdateUserHttp
                   .UpdateAsync(guestUser);
       }
     }
-        public class GraphClientMock : IGraphClientWrapper
+    
+    public class GraphClientMock : IGraphClientWrapper
+    {
+        private readonly String _result;
+
+        public GraphClientMock( String result )
         {
-            private readonly String _result;
-
-            public GraphClientMock( String result )
-            {
-                _result = result;
-            }
-
-            public async Task<object> updateUser( String userID, User guestUser )
-            {
-                mockResult = new Task<object>();
-                mockResult.Result = _result;
-                return mockResult;
-            }
+            _result = result;
         }
+
+        public async Task<object> updateUser( String userID, User guestUser )
+        {
+            var mockResult = Task<object>.Run( () => {return _result;} );
+            return await mockResult;
+        }
+    }
+
 
     public static string GetOneAccessToken()
     {
