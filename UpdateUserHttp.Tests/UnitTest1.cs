@@ -4,7 +4,7 @@ using System.Text;
 using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Azure.WebJobs.Host;
-using UpdateUserHttp
+using UpdateUserHttp;
 
 namespace UpdateUserHttp.Tests
 {
