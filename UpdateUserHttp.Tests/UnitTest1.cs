@@ -43,7 +43,7 @@ namespace UpdateUserHttp.Tests
             Assert.AreEqual("\"E0NoUserID\"", result.Content.ReadAsStringAsync().Result);
         }
         [TestMethod]
-        public async Task Request_Query_Without_UserID()
+        public async Task Request_Query_With_empty_UserID()
         {
             // Create HttpRequestMessage
             var data = "{\"user\": { \"userID\": \"\" } }";
