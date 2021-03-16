@@ -67,8 +67,8 @@ namespace UpdateUserHttp.Tests
             {
                 errorMessage = e.Message;
             }
-            var test = {"Message": "Invalid ID"};
-            Assert.AreEqual(test, errorMessage);
+            log.info("message type: " + typeof(e.Message));
+            Assert.AreEqual("Invalid ID", errorMessage.Message);
         }
     }
 }
