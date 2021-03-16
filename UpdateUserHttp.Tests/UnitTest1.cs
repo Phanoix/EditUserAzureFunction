@@ -17,7 +17,7 @@ namespace UpdateUserHttp.Tests
             await LocalSettings.SetupEnvironment();
 
             IGraphClientWrapper graphClientWrapper = new GraphClientMock(null);
-            var result = UpdateUser.ChangeUserInfo(graphClient: graphClientWrapper, log: log, userID: "679b3ae7-2a36-4bd3-8c50-672ab22f88ca", jobTitle: null, firstName: null, lastName: null, displayName: null, businessPhones: null, streetAddress: null, department: null, city: null, province: null, postalcode: null, mobilePhone: null, country: null);
+            var result = UpdateUser.ChangeUserInfo(graphClient: graphClientWrapper, Log: log, userID: "679b3ae7-2a36-4bd3-8c50-672ab22f88ca", jobTitle: null, firstName: null, lastName: null, displayName: null, businessPhones: null, streetAddress: null, department: null, city: null, province: null, postalcode: null, mobilePhone: null, country: null);
             Assert.AreEqual(null, result.Result);
         }
 
