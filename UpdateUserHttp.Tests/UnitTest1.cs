@@ -11,21 +11,14 @@ namespace UpdateUserHttp.Tests
     public class UnitTest1 : TestHelpers.FunctionTest
     {
         [TestMethod]
-        public async Task Request_With_Query()
+        public async Task ChangeUserInfo_With_Valid_ID()
         {
             // get local.settings and add to app.config 
             await LocalSettings.SetupEnvironment();
 
-            // Create HttpRequestMessage
-            var data = "{\"user\": { \"userID\": \"679b3ae7-2a36-4bd3-8c50-672ab22f88ca\" } }";
-            var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost/");
-            request.Content = new StringContent(data, Encoding.UTF8, "application/json");
-            var httpConfig = new HttpConfiguration();
-            request.SetConfiguration(httpConfig);
-
-            UpdateUser._graphClientWrapper = new GraphClientMock(null);
-            var result = await UpdateUser.Run(req: request, log: log);
-            Assert.AreEqual("\"Finished\"", result.Content.ReadAsStringAsync().Result);
+            IGraphClientWrapper graphClientWrapper = new GraphClientMock(null);
+            var result = UpdateUser.ChangeUserInfo(graphClient: graphClientWrapper, log: log, userID: "679b3ae7-2a36-4bd3-8c50-672ab22f88ca", jobTitle: null, firstName: null, lastName: null, displayName: null, businessPhones: null, streetAddress: null, department: null, city: null, province: null, postalcode: null, mobilePhone: null, country: null);
+            Assert.AreEqual(null, result.Result);
         }
 
         [TestMethod]
