@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
 using System.Text;
+using System.Exception;
 using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Azure.WebJobs.Host;
@@ -56,8 +57,9 @@ namespace UpdateUserHttp.Tests
             // get local.settings and add to app.config 
             await LocalSettings.SetupEnvironment();
 
-            String errorMessage = "";
+            string errorMessage = "";
             IGraphClientWrapper graphClientWrapper = new GraphClientMock("Invalid ID");
+            
             try{
                 var result = UpdateUser.ChangeUserInfo(graphClient: graphClientWrapper, Log: log, userID: "0000-0000-000", jobTitle: null, firstName: null, lastName: null, displayName: null, businessPhones: null, streetAddress: null, department: null, city: null, province: null, postalcode: null, mobilePhone: null, country: null);
             }
