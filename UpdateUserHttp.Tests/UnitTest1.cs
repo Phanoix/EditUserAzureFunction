@@ -51,21 +51,15 @@ namespace UpdateUserHttp.Tests
         }
 
         [TestMethod]
-        public async Task Request_Query_With_Invalid_ID()
+        [ExpectedException(typeof(ServiceException))]
+        public async Task ChangeUserInfo_Query_With_Invalid_ID()
         {
             // get local.settings and add to app.config 
             await LocalSettings.SetupEnvironment();
 
-            // Create HttpRequestMessage
-            var data = "{\"user\": { \"userID\": \"0000-0000-000\" } }";
-            var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost/");
-            request.Content = new StringContent(data, Encoding.UTF8, "application/json");
-            var httpConfig = new HttpConfiguration();
-            request.SetConfiguration(httpConfig);
-
-            UpdateUser._graphClientWrapper = new GraphClientMock("Invalid ID");
-            var result = await UpdateUser.Run(req: request, log: log);
-            Assert.AreEqual("\"E1BadRequest\"", result.Content.ReadAsStringAsync().Result);
+            IGraphClientWrapper graphClientWrapper = new GraphClientMock("Invalid ID");
+            var result = UpdateUser.ChangeUserInfo(graphClient: graphClientWrapper, Log: log, userID: "0000-0000-000", jobTitle: null, firstName: null, lastName: null, displayName: null, businessPhones: null, streetAddress: null, department: null, city: null, province: null, postalcode: null, mobilePhone: null, country: null);
+            Assert.AreEqual("Invalid ID", result.Result);
         }
     }
 }
