@@ -4,7 +4,6 @@ using System.Text;
 using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Azure.WebJobs.Host;
-using Microsoft.Graph.ServiceException;
 
 namespace UpdateUserHttp.Tests
 {
@@ -52,15 +51,21 @@ namespace UpdateUserHttp.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ServiceException))]
         public async Task ChangeUserInfo_Query_With_Invalid_ID()
         {
             // get local.settings and add to app.config 
             await LocalSettings.SetupEnvironment();
 
+            String errorMessage = "";
             IGraphClientWrapper graphClientWrapper = new GraphClientMock("Invalid ID");
-            var result = UpdateUser.ChangeUserInfo(graphClient: graphClientWrapper, Log: log, userID: "0000-0000-000", jobTitle: null, firstName: null, lastName: null, displayName: null, businessPhones: null, streetAddress: null, department: null, city: null, province: null, postalcode: null, mobilePhone: null, country: null);
-            Assert.AreEqual("Invalid ID", result.Result);
+            try{
+                var result = UpdateUser.ChangeUserInfo(graphClient: graphClientWrapper, Log: log, userID: "0000-0000-000", jobTitle: null, firstName: null, lastName: null, displayName: null, businessPhones: null, streetAddress: null, department: null, city: null, province: null, postalcode: null, mobilePhone: null, country: null);
+            }
+            catch(Exception e)
+            {
+                errorMessage = e.error.Message;
+            }
+            Assert.AreEqual("Invalid ID", errorMessage);
         }
     }
 }
