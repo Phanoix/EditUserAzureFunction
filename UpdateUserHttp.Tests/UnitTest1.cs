@@ -4,6 +4,7 @@ using System.Text;
 using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Azure.WebJobs.Host;
+using Microsoft.Graph.ServiceException;
 
 namespace UpdateUserHttp.Tests
 {
