@@ -21,6 +21,27 @@ namespace UpdateUserHttp.Tests
             var result = UpdateUser.ChangeUserInfo(graphClient: graphClientWrapper, Log: log, userID: "679b3ae7-2a36-4bd3-8c50-672ab22f88ca", jobTitle: null, firstName: null, lastName: null, displayName: null, businessPhones: null, streetAddress: null, department: null, city: null, province: null, postalcode: null, mobilePhone: null, country: null);
             Assert.AreEqual(null, result.Result);
         }
+        
+        [TestMethod]
+        public async Task ExtractHttpData_Query_Without_UserID()
+        {
+            // Create HttpRequestMessage
+            var data = "{\"user\": {  } }";
+            var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost/");
+            request.Content = new StringContent(data, Encoding.UTF8, "application/json");
+            var httpConfig = new HttpConfiguration();
+            request.SetConfiguration(httpConfig);
+
+            string errorMessage = "";
+            try{
+                var result = await UpdateUser.ExtractHttpData(req: request, log: log);
+            }
+            catch(HttpRequestException e)
+            {
+                errorMessage = e.Message;
+            }
+            Assert.AreEqual("\"E0NoUserID\"", errorMessage);
+        }
 
         [TestMethod]
         public async Task Request_Query_Without_UserID()
