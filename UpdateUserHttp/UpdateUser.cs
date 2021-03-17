@@ -46,81 +46,21 @@ namespace UpdateUserHttp
         public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)]HttpRequestMessage req, TraceWriter log)
         {
             log.Info("C# HTTP trigger function processed a request.");
-            // parse query parameter
-            string userID = req.GetQueryNameValuePairs()
-                .FirstOrDefault(q => string.Compare(q.Key, "userid", true) == 0)
-                .Value;
-
-            string jobTitle = req.GetQueryNameValuePairs()
-                .FirstOrDefault(q => string.Compare(q.Key, "jobtitle", true) == 0)
-                .Value;
-
-            string firstName = req.GetQueryNameValuePairs()
-                .FirstOrDefault(q => string.Compare(q.Key, "firstname", true) == 0)
-                .Value;
-
-            string lastName = req.GetQueryNameValuePairs()
-                .FirstOrDefault(q => string.Compare(q.Key, "lastname", true) == 0)
-                .Value;
-            string displayName = req.GetQueryNameValuePairs()
-                .FirstOrDefault(q => string.Compare(q.Key, "displayName", true) == 0)
-                .Value;
-            string businessPhones = req.GetQueryNameValuePairs()
-                .FirstOrDefault(q => string.Compare(q.Key, "businessPhones", true) == 0)
-                .Value;
-            string streetAddress = req.GetQueryNameValuePairs()
-                .FirstOrDefault(q => string.Compare(q.Key, "streetAddress", true) == 0)
-                .Value;
-            string department = req.GetQueryNameValuePairs()
-               .FirstOrDefault(q => string.Compare(q.Key, "department", true) == 0)
-               .Value;
-            string city = req.GetQueryNameValuePairs()
-                .FirstOrDefault(q => string.Compare(q.Key, "city", true) == 0)
-                .Value;
-            string province = req.GetQueryNameValuePairs()
-                .FirstOrDefault(q => string.Compare(q.Key, "province", true) == 0)
-                .Value;
-            string postalcode = req.GetQueryNameValuePairs()
-                .FirstOrDefault(q => string.Compare(q.Key, "postalcode", true) == 0)
-                .Value;
-            string mobilePhone = req.GetQueryNameValuePairs()
-                .FirstOrDefault(q => string.Compare(q.Key, "mobilephone", true) == 0)
-                .Value;
-            string country = req.GetQueryNameValuePairs()
-                .FirstOrDefault(q => string.Compare(q.Key, "country", true) == 0)
-                .Value;
-
-                // Get request body
-                dynamic data = await req.Content.ReadAsAsync<object>();
-                userID = userID ?? data?.user.userID;
-                jobTitle = jobTitle ?? data?.user.jobTitle;
-                firstName = firstName ?? data?.user.firstName;
-                lastName = lastName ?? data?.user.lastName;
-                displayName = displayName ?? data?.user.displayName;
-                businessPhones = businessPhones ?? data?.user.businessPhones;
-                streetAddress = streetAddress ?? data?.user.streetAddress;
-                department = department ?? data?.user.department;
-                city = city ?? data?.user.city;
-                province = province ?? data?.user.province;
-                postalcode = postalcode ?? data?.user.postalcode;
-                mobilePhone = mobilePhone ?? data?.user.mobilePhone;
-                country = country ?? data?.user.country;
-          
             Dictionary<string,string> extractedData = await ExtractHttpData(req, log);
 
-            userID = extractedData["userID"];
-            jobTitle = extractedData["jobTitle"];
-            firstName = extractedData["firstName"];
-            lastName = extractedData["lastName"];
-            displayName = extractedData["displayName"];
-            businessPhones = extractedData["businessPhones"];
-            streetAddress = extractedData["streetAddress"];
-            department = extractedData["department"];
-            city = extractedData["city"];
-            province = extractedData["province"];
-            postalcode = extractedData["postalcode"];
-            mobilePhone = extractedData["mobilePhone"];
-            country = extractedData["country"];
+            string userID = extractedData["userID"];
+            string jobTitle = extractedData["jobTitle"];
+            string firstName = extractedData["firstName"];
+            string lastName = extractedData["lastName"];
+            string displayName = extractedData["displayName"];
+            string businessPhones = extractedData["businessPhones"];
+            string streetAddress = extractedData["streetAddress"];
+            string department = extractedData["department"];
+            string city = extractedData["city"];
+            string province = extractedData["province"];
+            string postalcode = extractedData["postalcode"];
+            string mobilePhone = extractedData["mobilePhone"];
+            string country = extractedData["country"];
           
             // Check if userID is passed
             // return BadRequest if not present
