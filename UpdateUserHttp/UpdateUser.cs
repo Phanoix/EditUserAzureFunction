@@ -319,7 +319,7 @@ namespace UpdateUserHttp
 
       };
 
-      var result = await graphClient.updateUser( userID, guestUser );
+      var result = graphClient.updateUser( userID, guestUser );
 
       if( result.Result != null )
       {
