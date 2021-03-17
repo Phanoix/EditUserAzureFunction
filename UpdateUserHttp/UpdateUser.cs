@@ -46,6 +46,50 @@ namespace UpdateUserHttp
         public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)]HttpRequestMessage req, TraceWriter log)
         {
             log.Info("C# HTTP trigger function processed a request.");
+                // parse query parameter
+      string userID = req.GetQueryNameValuePairs()
+          .FirstOrDefault(q => string.Compare(q.Key, "userid", true) == 0)
+          .Value;
+
+      string jobTitle = req.GetQueryNameValuePairs()
+          .FirstOrDefault(q => string.Compare(q.Key, "jobtitle", true) == 0)
+          .Value;
+
+      string firstName = req.GetQueryNameValuePairs()
+          .FirstOrDefault(q => string.Compare(q.Key, "firstname", true) == 0)
+          .Value;
+
+      string lastName = req.GetQueryNameValuePairs()
+          .FirstOrDefault(q => string.Compare(q.Key, "lastname", true) == 0)
+          .Value;
+      string displayName = req.GetQueryNameValuePairs()
+          .FirstOrDefault(q => string.Compare(q.Key, "displayName", true) == 0)
+          .Value;
+      string businessPhones = req.GetQueryNameValuePairs()
+          .FirstOrDefault(q => string.Compare(q.Key, "businessPhones", true) == 0)
+          .Value;
+      string streetAddress = req.GetQueryNameValuePairs()
+          .FirstOrDefault(q => string.Compare(q.Key, "streetAddress", true) == 0)
+          .Value;
+      string department = req.GetQueryNameValuePairs()
+          .FirstOrDefault(q => string.Compare(q.Key, "department", true) == 0)
+          .Value;
+      string city = req.GetQueryNameValuePairs()
+          .FirstOrDefault(q => string.Compare(q.Key, "city", true) == 0)
+          .Value;
+      string province = req.GetQueryNameValuePairs()
+          .FirstOrDefault(q => string.Compare(q.Key, "province", true) == 0)
+          .Value;
+      string postalcode = req.GetQueryNameValuePairs()
+          .FirstOrDefault(q => string.Compare(q.Key, "postalcode", true) == 0)
+          .Value;
+      string mobilePhone = req.GetQueryNameValuePairs()
+          .FirstOrDefault(q => string.Compare(q.Key, "mobilephone", true) == 0)
+          .Value;
+      string country = req.GetQueryNameValuePairs()
+          .FirstOrDefault(q => string.Compare(q.Key, "country", true) == 0)
+          .Value;
+          
             Dictionary<string,string> extractedData = await ExtractHttpData(req, log);
 
             string userID = extractedData["userID"];
