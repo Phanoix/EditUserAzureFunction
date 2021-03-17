@@ -40,7 +40,7 @@ namespace UpdateUserHttp.Tests
             {
                 errorMessage = e.Message;
             }
-            Assert.AreEqual("\"E0NoUserID\"", errorMessage);
+            Assert.AreEqual("E0NoUserID", errorMessage);
         }
 
         [TestMethod]
