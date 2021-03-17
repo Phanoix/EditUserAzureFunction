@@ -46,7 +46,7 @@ namespace UpdateUserHttp
       public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)]HttpRequestMessage req, TraceWriter log)
       {
         log.Info("C# HTTP trigger function processed a request.");
-        Dictionary<string,string> httpData = Dictionary<string,string>();
+        Dictionary<string,string> httpData = new Dictionary<string,string>();
 
         try
         {
@@ -151,7 +151,7 @@ namespace UpdateUserHttp
 
       if (String.IsNullOrEmpty(userID))
       {
-        throw HttpRequestException("E0NoUserID");
+        throw new HttpRequestException("E0NoUserID");
       }
 
       httpData.Add("userID", userID);
