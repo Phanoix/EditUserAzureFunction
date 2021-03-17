@@ -90,7 +90,39 @@ namespace UpdateUserHttp.Tests
             }
             Assert.AreEqual("E0NoUserID", errorMessage);
         }
+        [TestMethod]
+        public async Task ExtractHttpData_Query_With_All_Parameters()
+        {
+            // Create HttpRequestMessage
+            var data = @"{""user"": { ""userID"": ""679b3ae7-2a36-4bd3-8c50-672ab22f88ca"", 
+                        ""jobTitle"": ""Unit Test"",
+                        ""firstName"": ""Foo""
+                        ""lastName"": ""Bar""
+                        ""displayName"": ""Foo Bar""
+                        ""businessPhones"": ""123-456-7890""
+                        ""streetAddress"": ""0 North Pole""
+                        ""department"": ""Testing""
+                        ""city"": ""Santa's Workshop""
+                        ""province"": ""Santa's""
+                        ""postalcode"": ""HOH OHO""
+                        ""mobilePhone"": ""012-345-6789""
+                        ""country"": ""North Pole""
+                        }}";
+            var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost/");
+            request.Content = new StringContent(data, Encoding.UTF8, "application/json");
+            var httpConfig = new HttpConfiguration();
+            request.SetConfiguration(httpConfig);
 
+            string errorMessage = "";
+            try{
+                var result = await UpdateUser.ExtractHttpData(req: request, log: log);
+            }
+            catch(HttpRequestException e)
+            {
+                errorMessage = e.Message;
+            }
+            Assert.AreEqual("", errorMessage);
+        }
 
         [TestMethod]
         public async Task ChangeUserInfo_Query_With_Invalid_ID()
