@@ -108,6 +108,20 @@ namespace UpdateUserHttp
           
             Dictionary<string,string> extractedData = await ExtractHttpData(req, log);
 
+            userID = extractedData["userID"];
+            jobTitle = extractedData["jobTitle"];
+            firstName = extractedData["firstName"];
+            lastName = extractedData["lastName"];
+            displayName = extractedData["displayName"];
+            businessPhones = extractedData["businessPhones"];
+            streetAddress = extractedData["streetAddress"];
+            department = extractedData["department"];
+            city = extractedData["city"];
+            province = extractedData["province"];
+            postalcode = extractedData["postalcode"];
+            mobilePhone = extractedData["mobilePhone"];
+            country = extractedData["country"];
+          
             // Check if userID is passed
             // return BadRequest if not present
             if (String.IsNullOrEmpty(userID))
