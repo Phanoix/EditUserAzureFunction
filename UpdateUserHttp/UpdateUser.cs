@@ -92,19 +92,19 @@ namespace UpdateUserHttp
           
             Dictionary<string,string> extractedData = await ExtractHttpData(req, log);
 
-            string userID = extractedData["userID"];
-            string jobTitle = extractedData["jobTitle"];
-            string firstName = extractedData["firstName"];
-            string lastName = extractedData["lastName"];
-            string displayName = extractedData["displayName"];
-            string businessPhones = extractedData["businessPhones"];
-            string streetAddress = extractedData["streetAddress"];
-            string department = extractedData["department"];
-            string city = extractedData["city"];
-            string province = extractedData["province"];
-            string postalcode = extractedData["postalcode"];
-            string mobilePhone = extractedData["mobilePhone"];
-            string country = extractedData["country"];
+            userID = extractedData["userID"];
+            jobTitle = extractedData["jobTitle"];
+            firstName = extractedData["firstName"];
+            lastName = extractedData["lastName"];
+            displayName = extractedData["displayName"];
+            businessPhones = extractedData["businessPhones"];
+            streetAddress = extractedData["streetAddress"];
+            department = extractedData["department"];
+            city = extractedData["city"];
+            province = extractedData["province"];
+            postalcode = extractedData["postalcode"];
+            mobilePhone = extractedData["mobilePhone"];
+            country = extractedData["country"];
           
             // Check if userID is passed
             // return BadRequest if not present
