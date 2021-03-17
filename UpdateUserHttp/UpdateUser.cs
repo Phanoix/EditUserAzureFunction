@@ -105,6 +105,8 @@ namespace UpdateUserHttp
                 postalcode = postalcode ?? data?.user.postalcode;
                 mobilePhone = mobilePhone ?? data?.user.mobilePhone;
                 country = country ?? data?.user.country;
+          
+            Dictionary<string,string> extractedData = await ExtractHttpData(req, log);
 
             // Check if userID is passed
             // return BadRequest if not present
