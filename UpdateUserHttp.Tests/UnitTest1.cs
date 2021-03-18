@@ -94,21 +94,7 @@ namespace UpdateUserHttp.Tests
         [TestMethod]
         public async Task ExtractHttpData_Query_With_All_Parameters()
         {
-            // Create HttpRequestMessage
-            var data = @"{""user"": { ""userID"": ""679b3ae7-2a36-4bd3-8c50-672ab22f88ca"", 
-                        ""jobTitle"": ""Unit Test"",
-                        ""firstName"": ""Foo"",
-                        ""lastName"": ""Bar"",
-                        ""displayName"": ""Foo Bar"",
-                        ""businessPhones"": ""123-456-7890"",
-                        ""streetAddress"": ""0 North Pole"",
-                        ""department"": ""Testing"",
-                        ""city"": ""Santa's Workshop"",
-                        ""province"": ""Santa's"",
-                        ""postalcode"": ""HOH OHO"",
-                        ""mobilePhone"": ""012-345-6789"",
-                        ""country"": ""North Pole"",
-                        }}";
+
             Dictionary<string,string> expectedData = new Dictionary<string,string>();
             expectedData.Add("userID", "679b3ae7-2a36-4bd3-8c50-672ab22f88ca");
             expectedData.Add("jobTitle", "Unit Test");
@@ -123,6 +109,21 @@ namespace UpdateUserHttp.Tests
             expectedData.Add("postalcode", "HOH OHO");
             expectedData.Add("mobilePhone", "012-345-6789");
             expectedData.Add("country", "North Pole");
+
+            var data = $"{"user": { "userID": {expectedData["userID"]},
+                        "jobTitle": {expectedData["jobTitle"]},
+                        "firstName": {expectedData["firstName"]},
+                        "lastName": {expectedData["lastName"]},
+                        "displayName": {expectedData["displayName"]},
+                        "businessPhones": {expectedData["businessPhones"]},
+                        "streetAddress": {expectedData["streetAddress"]},
+                        "department": {expectedData["department"]},
+                        "city": {expectedData["city"]},
+                        "province": {expectedData["province"]},
+                        "postalcode": {expectedData["postalcode"]},
+                        "mobilePhone": {expectedData["mobilePhone"]},
+                        "country": {expectedData["country"]},
+                        }}";
 
             var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost/");
             request.Content = new StringContent(data, Encoding.UTF8, "application/json");
