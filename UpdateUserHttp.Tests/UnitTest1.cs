@@ -130,7 +130,7 @@ namespace UpdateUserHttp.Tests
             request.SetConfiguration(httpConfig);
 
             string errorMessage = "";
-            Dictionary<string,string> result = new new Dictionary<string,string>();
+            Dictionary<string,string> result = new Dictionary<string,string>();
             try{
                 result = await UpdateUser.ExtractHttpData(req: request, log: log);
             }
