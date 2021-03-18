@@ -5,6 +5,7 @@ using System;
 using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Azure.WebJobs.Host;
+using System.Collections.Generic;
 
 namespace UpdateUserHttp.Tests
 {
@@ -108,20 +109,37 @@ namespace UpdateUserHttp.Tests
                         ""mobilePhone"": ""012-345-6789"",
                         ""country"": ""North Pole"",
                         }}";
+            Dictionary<string,string> expectedData = new Dictionary<string,string>();
+            expectedData.add("userID", "679b3ae7-2a36-4bd3-8c50-672ab22f88ca");
+            expectedData.add("jobTitle", "Unit Test");
+            expectedData.add("firstName", "Foo");
+            expectedData.add("lastName", "Bar");
+            expectedData.add("displayName", "Foo Bar");
+            expectedData.add("businessPhones", "123-456-7890");
+            expectedData.add("streetAddress", "0 North Pole");
+            expectedData.add("department", "Testing");
+            expectedData.add("city", "Santa's Workshop");
+            expectedData.add("province", "Santa's");
+            expectedData.add("postalcode", "HOH OHO");
+            expectedData.add("mobilePhone", "012-345-6789");
+            expectedData.add("country", "North Pole");
+
             var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost/");
             request.Content = new StringContent(data, Encoding.UTF8, "application/json");
             var httpConfig = new HttpConfiguration();
             request.SetConfiguration(httpConfig);
 
             string errorMessage = "";
+            Dictionary<string,string> result = new new Dictionary<string,string>();
             try{
-                var result = await UpdateUser.ExtractHttpData(req: request, log: log);
+                result = await UpdateUser.ExtractHttpData(req: request, log: log);
             }
             catch(HttpRequestException e)
             {
                 errorMessage = e.Message;
             }
             Assert.AreEqual("", errorMessage);
+            Assert.AreEqual(expectedData, result);
         }
 
         [TestMethod]
