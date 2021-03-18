@@ -110,19 +110,19 @@ namespace UpdateUserHttp.Tests
                         ""country"": ""North Pole"",
                         }}";
             Dictionary<string,string> expectedData = new Dictionary<string,string>();
-            expectedData.add("userID", "679b3ae7-2a36-4bd3-8c50-672ab22f88ca");
-            expectedData.add("jobTitle", "Unit Test");
-            expectedData.add("firstName", "Foo");
-            expectedData.add("lastName", "Bar");
-            expectedData.add("displayName", "Foo Bar");
-            expectedData.add("businessPhones", "123-456-7890");
-            expectedData.add("streetAddress", "0 North Pole");
-            expectedData.add("department", "Testing");
-            expectedData.add("city", "Santa's Workshop");
-            expectedData.add("province", "Santa's");
-            expectedData.add("postalcode", "HOH OHO");
-            expectedData.add("mobilePhone", "012-345-6789");
-            expectedData.add("country", "North Pole");
+            expectedData.Add("userID", "679b3ae7-2a36-4bd3-8c50-672ab22f88ca");
+            expectedData.Add("jobTitle", "Unit Test");
+            expectedData.Add("firstName", "Foo");
+            expectedData.Add("lastName", "Bar");
+            expectedData.Add("displayName", "Foo Bar");
+            expectedData.Add("businessPhones", "123-456-7890");
+            expectedData.Add("streetAddress", "0 North Pole");
+            expectedData.Add("department", "Testing");
+            expectedData.Add("city", "Santa's Workshop");
+            expectedData.Add("province", "Santa's");
+            expectedData.Add("postalcode", "HOH OHO");
+            expectedData.Add("mobilePhone", "012-345-6789");
+            expectedData.Add("country", "North Pole");
 
             var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost/");
             request.Content = new StringContent(data, Encoding.UTF8, "application/json");
