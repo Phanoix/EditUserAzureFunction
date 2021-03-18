@@ -96,17 +96,17 @@ namespace UpdateUserHttp.Tests
             // Create HttpRequestMessage
             var data = @"{""user"": { ""userID"": ""679b3ae7-2a36-4bd3-8c50-672ab22f88ca"", 
                         ""jobTitle"": ""Unit Test"",
-                        ""firstName"": ""Foo""
-                        ""lastName"": ""Bar""
-                        ""displayName"": ""Foo Bar""
-                        ""businessPhones"": ""123-456-7890""
-                        ""streetAddress"": ""0 North Pole""
-                        ""department"": ""Testing""
-                        ""city"": ""Santa's Workshop""
-                        ""province"": ""Santa's""
-                        ""postalcode"": ""HOH OHO""
-                        ""mobilePhone"": ""012-345-6789""
-                        ""country"": ""North Pole""
+                        ""firstName"": ""Foo"",
+                        ""lastName"": ""Bar"",
+                        ""displayName"": ""Foo Bar"",
+                        ""businessPhones"": ""123-456-7890"",
+                        ""streetAddress"": ""0 North Pole"",
+                        ""department"": ""Testing"",
+                        ""city"": ""Santa's Workshop"",
+                        ""province"": ""Santa's"",
+                        ""postalcode"": ""HOH OHO"",
+                        ""mobilePhone"": ""012-345-6789"",
+                        ""country"": ""North Pole"",
                         }}";
             var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost/");
             request.Content = new StringContent(data, Encoding.UTF8, "application/json");
