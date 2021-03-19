@@ -108,21 +108,21 @@ namespace UpdateUserHttp.Tests
             expectedData.Add("province", "Santa's");
             expectedData.Add("postalcode", "HOH OHO");
             expectedData.Add("mobilePhone", "012-345-6789");
-            expectedData.Add("country", "North Pole");
-
-            var data = $"{"user": { "userID": {expectedData["userID"]},
-                        "jobTitle": {expectedData["jobTitle"]},
-                        "firstName": {expectedData["firstName"]},
-                        "lastName": {expectedData["lastName"]},
-                        "displayName": {expectedData["displayName"]},
-                        "businessPhones": {expectedData["businessPhones"]},
-                        "streetAddress": {expectedData["streetAddress"]},
-                        "department": {expectedData["department"]},
-                        "city": {expectedData["city"]},
-                        "province": {expectedData["province"]},
-                        "postalcode": {expectedData["postalcode"]},
-                        "mobilePhone": {expectedData["mobilePhone"]},
-                        "country": {expectedData["country"]},
+            expectedData.Add("country", "North Pole");\
+            
+            var data = $"{\"user\": { \"userID\": {expectedData[\"userID\"]},
+                        \"jobTitle\": {expectedData[\"jobTitle\"]},
+                        \"firstName\": {expectedData[\"firstName\"]},
+                        \"lastName\": {expectedData[\"lastName\"]},
+                        \"displayName\": {expectedData[\"displayName\"]},
+                        \"businessPhones\": {expectedData[\"businessPhones\"]},
+                        \"streetAddress\": {expectedData[\"streetAddress\"]},
+                        \"department\": {expectedData[\"department\"]},
+                        \"city\": {expectedData[\"city\"]},
+                        \"province\": {expectedData[\"province\"]},
+                        \"postalcode\": {expectedData[\"postalcode\"]},
+                        \"mobilePhone\": {expectedData[\"mobilePhone\"]},
+                        \"country\": {expectedData[\"country\"]},
                         }}";
 
             var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost/");
