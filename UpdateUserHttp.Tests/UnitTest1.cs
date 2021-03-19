@@ -108,7 +108,7 @@ namespace UpdateUserHttp.Tests
             expectedData.Add("province", "Santa's");
             expectedData.Add("postalcode", "HOH OHO");
             expectedData.Add("mobilePhone", "012-345-6789");
-            expectedData.Add("country", "North Pole");\
+            expectedData.Add("country", "North Pole");
             
             var data = $@"{{""user"": {{""userID"": {expectedData["userID"]},
                         ""jobTitle"": {expectedData["jobTitle"]},
